@@ -117,7 +117,7 @@ button.submitButton {
     border: 3px solid #FFA91E60;
     border-radius: 10px;
     padding: 0.5rem 1rem;
-    margin-top: 1rem;
+    margin-top: 2rem;
     font-family: 'Kanit', sans-serif;
     color: #FFA91E60;
     font-size: 1rem;
@@ -141,7 +141,7 @@ input:not(#boatValue) {
     font-size: max(12px, .5em);
     font-family: inherit;
     font-weight: 500;
-    padding: 0.25em 0.5em;
+    padding: 1rem;
     background-color: #010e10;
     border: 1px solid #3d3d3d;
     border-radius: 4px;
@@ -164,6 +164,7 @@ textarea {
     height: 100%;
     resize: none;
     color: #a6a6a6;
+    padding: 0.5rem;
 }
 
 textarea:focus {
@@ -181,10 +182,12 @@ input:focus:not(#boatValue) {
 label {
     font-size: .7rem;
     margin-bottom: 0.2rem;
+    color: #7c7c7c;
 }
 span.input-group-addon {
     font-size: .7rem;
     margin-bottom: .2rem;
+    color: #7c7c7c;
 }
 input[type="date"] {
     margin-bottom: 1rem;

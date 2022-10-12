@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>deliveryk - signup form</title>
     <link rel="stylesheet" href="./style.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="./daterangepicker.css" />
+
 </head>
 <body>
     <div id="hero">
@@ -22,7 +27,7 @@
 
         </p>
         <div id="form">
-            <form action="http://httpbin.org/post" method="post">
+            <form action="https://httpbin.org/post" method="post">
             <div class="formRow">
                 <div>
                     <label for="full_name">Full Name:</label>
@@ -36,7 +41,7 @@
             <div class="formRow">
                 <div>
                     <label for="phone">Phone no (incl. country code)</label>
-                    <input type="tel" name="phoneNumber" id="phoneNumber" placeholder="+48700200199" required>
+                    <input type="tel" name="phoneNumber" id="phoneNumber" placeholder="+48 700200199" required>
                 </div>
                 <div style="align-self: flex-end;">
                     <label for="boatValue">Value of the Boat:</label>
@@ -46,29 +51,45 @@
             </div>
 
                 <div class="formRow">
-                        <div style="justify-content: space-between;">
-                            <span class="input-group-addon">Estimated Delivery Date (from):</span>
-                            <input type="date" name="dateFrom" id="dateFrom" value="2022-10-11" min="2022-10-11" required>
-                        
-                            <span class="input-group-addon">To (opt.):</span>
-                            <input type="date" name="dateTo" id="dateTo" min="2022-10-11" style="margin-bottom: 0;">
+                    <div>
+                    <label for="daterange">Estimated dates:</label>
+                    <input type="text" name="daterange" value="01/01/2018 - 01/15/2018" />
+                    <button class="submitButton" type="submit">Request deliveryk</button>
                         </div>
+                    
                         <div>
                             <label for="relevantInfo">Other Relevant Information:</label>
-                            <textarea id="relevantInfo" name ="relevantInfo"></textarea>
+                            <textarea id="relevantInfo" name ="relevantInfo" placeholder="Route, type of yacht, add. requirements"></textarea>
                         </div>
                         
                 </div>
-                <div class="formRow button">
-                    <button class="submitButton" type="submit">Request deliveryk</button>
-                </div>
+                
+
+<script>
+    console.log(Date());
+$(function() {
+  $('input[name="daterange"]').daterangepicker({
+    opens: 'left',
+    drops: 'up',
+    minDate: moment().startOf('hour'),
+  }, function(start, end, label) {
+    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+  });
+});
+</script>
+                
                 </div>
             </form>
         </div>
     </div>
     <script>
+        
+
         const boatValue = document.querySelector("#boatValue");
         const output = document.querySelector(".boatValue-output");
+        const phoneNumber = document.querySelector("#phoneNumber");
+        const sendButton = document.querySelector('.submitButton');
+
         output.textContent = boatValue.value;
         boatValue.addEventListener("input", () => displayValue());
         const displayValue = function() {
@@ -76,6 +97,7 @@
             else if (boatValue.value === '5000000') output.textContent = '5.000.000 and more';
             else output.textContent = new Intl.NumberFormat('de-DE').format(boatValue.value);
         }
+        
         displayValue();
     </script>
 </body>
