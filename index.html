@@ -96,6 +96,6 @@ const displayValue = function() {
     else if (boatValue.value === '5000000') output.textContent = '5.000.000 and more';
     else output.textContent = new Intl.NumberFormat('de-DE').format(boatValue.value);
 }
-window.onload(displayValue());
+displayValue();
 </script>
 </html>
