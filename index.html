@@ -31,17 +31,17 @@
             <div class="formRow">
                 <div>
                     <label for="full_name">Full Name:</label>
-                    <input type="text" id="fullName" name="fullName" required pattern=".*\s.*">
+                    <input type="text" id="fullName" name="fullName" required pattern="\D{2}\s\D{2}" placeholder=" " minlength="5">
                 </div>
                 <div>
                     <label for="email">E-Mail:</label>
-                    <input type="email" name="email" id="email" required>
+                    <input type="email" name="email" id="email" required placeholder=" ">
                 </div>
             </div>        
             <div class="formRow">
                 <div>
                     <label for="phone">Phone no (incl. country code)</label>
-                    <input type="tel" name="phoneNumber" id="phoneNumber" placeholder="+48 700200199" required>
+                    <input type="tel" name="phoneNumber" id="phoneNumber" placeholder="+48700200199" required pattern="[+]\d{6,}">
                 </div>
                 <div style="align-self: flex-end;">
                     <label for="boatValue">
@@ -66,7 +66,7 @@
                 </div>
                 <div>
                     <label for="relevantInfo">Other Relevant Information:</label>
-                    <textarea id="relevantInfo" name ="relevantInfo" placeholder="Route, type of yacht, add. requirements"></textarea>
+                    <textarea id="relevantInfo" name ="relevantInfo" placeholder="Route, type of yacht, add. requirements" required></textarea>
                 </form>
                 </div>          
             </div>   

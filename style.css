@@ -1,10 +1,5 @@
 @import url(https://fonts.googleapis.com/css2?family=Kanit:wght@500&display=swap);
-:root {
-  --input-border: #3d3d3d;
-  --input-focus-h: 245;
-  --input-focus-s: 10%;
-  --input-focus-l: 42%
-}
+
 *,
 ::after,
 ::before {
@@ -138,6 +133,7 @@ input:not(#boatValue) {
   color-scheme: dark;
   height: 1.4rem
 }
+
 textarea {
   width: calc(100px + 10vw);
   font-size: max(12px, .5em);
@@ -160,6 +156,10 @@ textarea:focus {
 input:focus:not(#boatValue) {
   border-color: #ffa91e;
   outline: 2px solid transparent
+}
+input:not(:focus):not(#boatFocus):not(:placeholder-shown):invalid {
+  border-color: #FF3B6260;
+  background-color: #63000020;
 }
 label {
   font-size: .7rem;
