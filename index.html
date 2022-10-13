@@ -7,10 +7,9 @@
     <title>deliveryk - signup form</title>
     <link rel="stylesheet" href="./style.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<link rel="stylesheet" type="text/css" href="./daterangepicker.css" />
-
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./daterangepicker.css" />
 </head>
 <body>
     <div id="hero">
@@ -19,12 +18,13 @@
         </div>
     </div>
     <div id="contents">
-        <p >
+        <p>
         This is an <strong>inspiring quote</strong> or a testimonial from a customer. Maybe it's just filling up space, or 
-        maybe people will actually read it. Who knows? All I know is that it looks nice. </p>
-        <p>Some nice text to convince people we really can deliver boats and shit.<br>
-            <strong>Sign up for our delivery </strong>so we can take care of your beloved boat.
-
+        maybe people will actually read it. Who knows? All I know is that it looks nice. 
+        </p>
+        <p>
+        Some nice text to convince people we really can deliver boats and shit.<br>
+        <strong>Sign up for our delivery </strong>so we can take care of your beloved boat.
         </p>
         <div id="form">
             <form action="https://httpbin.org/post" method="post">
@@ -44,61 +44,58 @@
                     <input type="tel" name="phoneNumber" id="phoneNumber" placeholder="+48 700200199" required>
                 </div>
                 <div style="align-self: flex-end;">
-                    <label for="boatValue">Value of the Boat:</label>
+                    <label for="boatValue">
+                    <span>Value of the Boat:</span>
+                    <div class="moreInfo">
+                        <span>?</span>
+                        <div class="moreInfoBox">
+                            We are professionals and we never get onboard without proper insurance.
+                            This information is needed to provide you with estimated total cost of our service.
+                        </div>
+                    </div>
+                </label>
                     <input type="range" id="boatValue" name="boatValue" min="500000" max="5000000" step="500000" value="1000000" style="width: calc(100px + 10vw);">
                     <output class="boatValue" for="boatValue"><strong>$</strong><span class="boatValue-output"></span></output>
                 </div>
             </div>
-
-                <div class="formRow">
-                    <div>
+            <div class="formRow">
+                <div>
                     <label for="daterange">Estimated dates:</label>
                     <input type="text" name="daterange" value="01/01/2018 - 01/15/2018" />
                     <button class="submitButton" type="submit">Request deliveryk</button>
-                        </div>
-                    
-                        <div>
-                            <label for="relevantInfo">Other Relevant Information:</label>
-                            <textarea id="relevantInfo" name ="relevantInfo" placeholder="Route, type of yacht, add. requirements"></textarea>
-                        </div>
-                        
                 </div>
-                
-
+                <div>
+                    <label for="relevantInfo">Other Relevant Information:</label>
+                    <textarea id="relevantInfo" name ="relevantInfo" placeholder="Route, type of yacht, add. requirements"></textarea>
+                </form>
+                </div>          
+            </div>   
+        </div>
+    </div>
+</body>
 <script>
-    console.log(Date());
+console.log(Date());
 $(function() {
-  $('input[name="daterange"]').daterangepicker({
+$('input[name="daterange"]').daterangepicker({
     opens: 'left',
     drops: 'up',
     minDate: moment().startOf('hour'),
-  }, function(start, end, label) {
+}, function(start, end, label) {
     console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-  });
-});
+    });
+ });
+const boatValue = document.querySelector("#boatValue");
+const output = document.querySelector(".boatValue-output");
+const phoneNumber = document.querySelector("#phoneNumber");
+const sendButton = document.querySelector('.submitButton');
+
+output.textContent = boatValue.value;
+boatValue.addEventListener("input", () => displayValue());
+const displayValue = function() {
+    if (boatValue.value === '500000') output.textContent = '500.000 and less';
+    else if (boatValue.value === '5000000') output.textContent = '5.000.000 and more';
+    else output.textContent = new Intl.NumberFormat('de-DE').format(boatValue.value);
+}
+window.onload(displayValue());
 </script>
-                
-                </div>
-            </form>
-        </div>
-    </div>
-    <script>
-        
-
-        const boatValue = document.querySelector("#boatValue");
-        const output = document.querySelector(".boatValue-output");
-        const phoneNumber = document.querySelector("#phoneNumber");
-        const sendButton = document.querySelector('.submitButton');
-
-        output.textContent = boatValue.value;
-        boatValue.addEventListener("input", () => displayValue());
-        const displayValue = function() {
-            if (boatValue.value === '500000') output.textContent = '500.000 and less';
-            else if (boatValue.value === '5000000') output.textContent = '5.000.000 and more';
-            else output.textContent = new Intl.NumberFormat('de-DE').format(boatValue.value);
-        }
-        
-        displayValue();
-    </script>
-</body>
 </html>
